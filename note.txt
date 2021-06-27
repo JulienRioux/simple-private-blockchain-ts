@@ -1,8 +1,0 @@
-// Block data model
-{
-   "hash": "",
-   "height": 0,
-   "transactionBody": [],
-   "time": 0,
-   "previousblockhash": ""
- }

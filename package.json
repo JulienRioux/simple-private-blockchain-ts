@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node simpleChain.js",
-    "dev-tsc": "ts-node-dev index.ts"
+    "start": "node index.js",
+    "dev": "ts-node-dev index.ts",
+    "compile": "tsc index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Julien Rioux",
   "license": "ISC",
   "dependencies": {
     "crypto-js": "^4.0.0"
