@@ -18,6 +18,10 @@ class Block{
  * Data model with function to support:
  * - createGenerisBlock();
  * - addBlock();
+ * - getLatestBlock();
+ * - getBlock();
+ * - validateBlock();
+ * - validateChain();
  */
 class Blockchain{
   constructor(){
