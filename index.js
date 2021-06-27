@@ -36,11 +36,12 @@ var Blockchain = /** @class */ (function () {
     function Blockchain() {
         this.chain = [];
         // Creating the Genesis block to the blockchain
-        this.addNewBlock(new Block(exports.GENESIS_BLOCK_BODY));
+        this.addNewBlock(exports.GENESIS_BLOCK_BODY);
     }
     // Blockchain functions
     /** Adding block to the blockchain */
-    Blockchain.prototype.addNewBlock = function (newBlock) {
+    Blockchain.prototype.addNewBlock = function (bodyData) {
+        var newBlock = new Block(bodyData);
         // Adding a height to the new block
         newBlock.height = this.chain.length;
         // Adding a timestamp

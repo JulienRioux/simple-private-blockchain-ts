@@ -4,7 +4,7 @@
   "description": "Building a simple JS blockchain.",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "compile-and-test": "yarn compile && yarn test",
     "start": "node index.js",
     "dev": "ts-node-dev index.ts",
