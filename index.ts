@@ -31,7 +31,7 @@ class Block{
  * - validateChain();
  */
 class Blockchain{
-  chain: Block[]; // For now?!
+  chain: Block[]; 
   constructor(){
     this.chain = [];
     // Creating the Genesis block to the blockchain
@@ -40,7 +40,7 @@ class Blockchain{
 
   // Blockchain functions
 
-  // Adding block to the blockchain
+  /** Adding block to the blockchain */
   addNewBlock(newBlock: Block){
     // Adding a height to the new block
     newBlock.height = this.chain.length;
@@ -57,17 +57,17 @@ class Blockchain{
     this.chain.push(newBlock);
   }
 
-// Simply gets the last block added to the chain
+  /** Simply gets the last block added to the chain  */
   getLatestBlock(){
     return this.chain[this.chain.length - 1];
   }
 
-  // Getting the block inside the chain from an hash
+  /** Getting the block inside the chain from an hash */
   getBlockByHash(hash: string){
     return this.chain.find(block => block.hash === hash);
   }
 
-  // Validate that the block has the right hash
+  /** Validate that the block has the right hash */
   validateBlock(blockToVerify: any){
     // Saving the hash to verify before resetting the hash to an empty and running the sha256 hashing function
     const oldHash = blockToVerify.hash;
@@ -83,11 +83,12 @@ class Blockchain{
     return true;
   }
 
-  // Validate that the chain is valid 
+  /** Validate that the chain is valid */
   validateChain(){
     // First get the last block 
     let blockToValidate = this.getLatestBlock();
-    
+
+    // Validate each block until the genesis block and return if the chain is valid or not
     while (blockToValidate.height >= 0) {
       const isValidBlock = this.validateBlock(blockToValidate);
       // If the block is not valid, return that the chain is not valid
@@ -114,7 +115,7 @@ class Blockchain{
 // Creating the blockchain
 const myBlockchain = new Blockchain();
 
-// Function that create a new block with the block number as body
+// Simple function that create a new block with the block number as body
 const newBlock = () => new Block(`Block #${myBlockchain.chain.length + 1}`);
 
 // Adding 10 blocks to my blockchain
