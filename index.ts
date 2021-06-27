@@ -1,5 +1,13 @@
 import SHA256 = require("crypto-js/sha256");
 
+export const GENESIS_BLOCK_BODY = "Genesis block - First block in the chain ⛓️ !";
+
+/** HElper function that create timestamp (i.e. valid UTC timestamps to validate with external ressources) */
+export const createNewUtcDate = () => new Date().getTime().toString().slice(0,-3);
+
+/** Helper function to hash a block using SHA256 */
+export const hashBlock = (block: Block) => SHA256(JSON.stringify(block)).toString()
+
 /**
  * Simple block data model
  */
@@ -35,7 +43,7 @@ export class Blockchain{
   constructor(){
     this.chain = [];
     // Creating the Genesis block to the blockchain
-    this.addNewBlock(new Block("Genesis block - First block in the chain ⛓️ !"));
+    this.addNewBlock(new Block(GENESIS_BLOCK_BODY));
   }
 
   // Blockchain functions
@@ -44,15 +52,15 @@ export class Blockchain{
   addNewBlock(newBlock: Block){
     // Adding a height to the new block
     newBlock.height = this.chain.length;
-    // Adding a timestamp (i.e. valid UTC timestamps to validate with external ressources)
-    newBlock.timestamp = new Date().getTime().toString().slice(0,-3);
+    // Adding a timestamp
+    newBlock.timestamp = createNewUtcDate();
     // Adding the previous block hash if it exists
     if(this.chain.length > 0){
       newBlock.previousBlockHash = this.chain[this.chain.length - 1].hash;
     }
     // Setting the hash of the new block:
     //  Hashing the new block and returning it as a string
-    newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
+    newBlock.hash = hashBlock(newBlock);
     // Adding the new block to the chain
     this.chain.push(newBlock);
   }

@@ -1,7 +1,14 @@
 "use strict";
 exports.__esModule = true;
-exports.sum = exports.Blockchain = void 0;
+exports.Blockchain = exports.hashBlock = exports.createNewUtcDate = exports.GENESIS_BLOCK_BODY = void 0;
 var SHA256 = require("crypto-js/sha256");
+exports.GENESIS_BLOCK_BODY = "Genesis block - First block in the chain ⛓️ !";
+/** HElper function that create timestamp (i.e. valid UTC timestamps to validate with external ressources) */
+var createNewUtcDate = function () { return new Date().getTime().toString().slice(0, -3); };
+exports.createNewUtcDate = createNewUtcDate;
+/** Helper function to hash a block using SHA256 */
+var hashBlock = function (block) { return SHA256(JSON.stringify(block)).toString(); };
+exports.hashBlock = hashBlock;
 /**
  * Simple block data model
  */
@@ -28,22 +35,22 @@ var Blockchain = /** @class */ (function () {
     function Blockchain() {
         this.chain = [];
         // Creating the Genesis block to the blockchain
-        this.addNewBlock(new Block("Genesis block - First block in the chain ⛓️ !"));
+        this.addNewBlock(new Block(exports.GENESIS_BLOCK_BODY));
     }
     // Blockchain functions
     /** Adding block to the blockchain */
     Blockchain.prototype.addNewBlock = function (newBlock) {
         // Adding a height to the new block
         newBlock.height = this.chain.length;
-        // Adding a timestamp (i.e. valid UTC timestamps to validate with external ressources)
-        newBlock.timestamp = new Date().getTime().toString().slice(0, -3);
+        // Adding a timestamp
+        newBlock.timestamp = exports.createNewUtcDate();
         // Adding the previous block hash if it exists
         if (this.chain.length > 0) {
             newBlock.previousBlockHash = this.chain[this.chain.length - 1].hash;
         }
         // Setting the hash of the new block:
         //  Hashing the new block and returning it as a string
-        newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
+        newBlock.hash = exports.hashBlock(newBlock);
         // Adding the new block to the chain
         this.chain.push(newBlock);
     };
@@ -99,10 +106,6 @@ var Blockchain = /** @class */ (function () {
     return Blockchain;
 }());
 exports.Blockchain = Blockchain;
-var sum = function (a, b) {
-    return a + b;
-};
-exports.sum = sum;
 // // Creating the blockchain
 // const myBlockchain = new Blockchain();
 // // Simple function that create a new block with the block number as body
