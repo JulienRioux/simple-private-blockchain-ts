@@ -2,7 +2,7 @@ import SHA256 = require("crypto-js/sha256");
 
 export const GENESIS_BLOCK_BODY = "Genesis block - First block in the chain ⛓️ !";
 
-/** HElper function that create timestamp (i.e. valid UTC timestamps to validate with external ressources) */
+/** Helper function that create timestamp (i.e. valid UTC timestamps to validate with external ressources) */
 export const createNewUtcDate = () => new Date().getTime().toString().slice(0,-3);
 
 /** Helper function to hash a block using SHA256 */
