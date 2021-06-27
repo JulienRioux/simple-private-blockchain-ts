@@ -12,7 +12,7 @@ describe("Simple Private Blockchain", () => {
     console.error = jest.fn();
   });
 
-  it.skip('Block creating works', () => {
+  it('Block creating works', () => {
     const NEW_BLOCK_BODY = "Hello world!";
     const newBlock = new Block(NEW_BLOCK_BODY);
     expect(newBlock).toEqual({
@@ -24,7 +24,7 @@ describe("Simple Private Blockchain", () => {
     });
   });
 
-  it.skip("The blockchain creation works.", () => {
+  it("The blockchain creation works.", () => {
     const newBlockchain = new Blockchain();
     // Make sure the chain has created the genesis block
     expect(newBlockchain.chain.length).toEqual(1);
@@ -50,7 +50,7 @@ describe("Simple Private Blockchain", () => {
     expect(genesisBlock.hash).toEqual(clonedBlockHash);
   });
 
-  it.skip('Adding blocks to the blockchain works', () => {
+  it('Adding blocks to the blockchain works', () => {
     const newBlockchain = new Blockchain();
     // Adding 1 block to the chain
     newBlockchain.addNewBlock(newBlockBodyFormatter(newBlockchain.chain.length));
@@ -68,7 +68,7 @@ describe("Simple Private Blockchain", () => {
     expect(newBlockchain.chain[11].body).toEqual(newBlockBodyFormatter(11));
   });
 
-  it.skip('Validating blocks works', () => {
+  it('Validating blocks works', () => {
     const newBlockchain = new Blockchain();
     // A newly created blockchain should be valid
     expect(newBlockchain.chain.length).toEqual(1);
@@ -82,7 +82,7 @@ describe("Simple Private Blockchain", () => {
     expect(newBlockchain.validateChain()).toBeTruthy();
   });
 
-  it.skip("Invalidate the chain if some chain data is being changed", () => {
+  it("Invalidate the chain if some chain data is being changed", () => {
     const newBlockchain = new Blockchain();
     // Adding 5 new blocks and checking if the blockchain is still valid
     for(let i = 0; i < 5; i++){

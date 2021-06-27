@@ -28,7 +28,6 @@ export class Block{
   }
 }
 
-
 /**
  * Blockchain
  * Data model with function to support:

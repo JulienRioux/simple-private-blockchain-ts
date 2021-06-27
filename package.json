@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
+    "test:ci": "jest",
     "compile-and-test": "yarn compile && yarn test",
     "start": "node index.js",
     "dev": "ts-node-dev index.ts",
