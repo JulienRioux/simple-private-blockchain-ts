@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+exports.sum = exports.Blockchain = void 0;
 var SHA256 = require("crypto-js/sha256");
 /**
  * Simple block data model
@@ -30,7 +31,7 @@ var Blockchain = /** @class */ (function () {
         this.addNewBlock(new Block("Genesis block - First block in the chain ⛓️ !"));
     }
     // Blockchain functions
-    // Adding block to the blockchain
+    /** Adding block to the blockchain */
     Blockchain.prototype.addNewBlock = function (newBlock) {
         // Adding a height to the new block
         newBlock.height = this.chain.length;
@@ -46,15 +47,15 @@ var Blockchain = /** @class */ (function () {
         // Adding the new block to the chain
         this.chain.push(newBlock);
     };
-    // Simply gets the last block added to the chain
+    /** Simply gets the last block added to the chain  */
     Blockchain.prototype.getLatestBlock = function () {
         return this.chain[this.chain.length - 1];
     };
-    // Getting the block inside the chain from an hash
+    /** Getting the block inside the chain from an hash */
     Blockchain.prototype.getBlockByHash = function (hash) {
         return this.chain.find(function (block) { return block.hash === hash; });
     };
-    // Validate that the block has the right hash
+    /** Validate that the block has the right hash */
     Blockchain.prototype.validateBlock = function (blockToVerify) {
         // Saving the hash to verify before resetting the hash to an empty and running the sha256 hashing function
         var oldHash = blockToVerify.hash;
@@ -69,10 +70,11 @@ var Blockchain = /** @class */ (function () {
         }
         return true;
     };
-    // Validate that the chain is valid 
+    /** Validate that the chain is valid */
     Blockchain.prototype.validateChain = function () {
         // First get the last block 
         var blockToValidate = this.getLatestBlock();
+        // Validate each block until the genesis block and return if the chain is valid or not
         while (blockToValidate.height >= 0) {
             var isValidBlock = this.validateBlock(blockToValidate);
             // If the block is not valid, return that the chain is not valid
@@ -96,14 +98,19 @@ var Blockchain = /** @class */ (function () {
     };
     return Blockchain;
 }());
-// Creating the blockchain
-var myBlockchain = new Blockchain();
-// Function that create a new block with the block number as body
-var newBlock = function () { return new Block("Block #" + (myBlockchain.chain.length + 1)); };
-// Adding 10 blocks to my blockchain
-for (var i = 0; i < 3; i++) {
-    myBlockchain.addNewBlock(newBlock());
-}
-// Checking if the chain is valid and printing the output
-var chainIsValid = myBlockchain.validateChain();
-console.log("The Chain is" + (chainIsValid ? '' : "n't") + " valid " + (chainIsValid ? '✅' : "❌") + " ");
+exports.Blockchain = Blockchain;
+var sum = function (a, b) {
+    return a + b;
+};
+exports.sum = sum;
+// // Creating the blockchain
+// const myBlockchain = new Blockchain();
+// // Simple function that create a new block with the block number as body
+// const newBlock = () => new Block(`Block #${myBlockchain.chain.length + 1}`);
+// // Adding 10 blocks to my blockchain
+// for(let i = 0; i < 3; i++){
+//   myBlockchain.addNewBlock(newBlock());
+// }
+// // Checking if the chain is valid and printing the output
+// const chainIsValid = myBlockchain.validateChain();
+// console.log(`The Chain is${chainIsValid ? '' : "n't"} valid ${chainIsValid ? '✅' : "❌"} `);

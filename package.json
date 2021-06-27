@@ -4,7 +4,8 @@
   "description": "Building a simple JS blockchain.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "compile-and-test": "yarn compile && yarn test",
     "start": "node index.js",
     "dev": "ts-node-dev index.ts",
     "compile": "tsc index.ts"
@@ -17,7 +18,10 @@
   },
   "devDependencies": {
     "@types/crypto-js": "^4.0.1",
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.12.5",
+    "jest": "^27.0.5",
+    "ts-jest": "^27.0.3",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.3.4"
   }
