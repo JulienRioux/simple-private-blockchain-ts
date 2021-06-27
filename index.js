@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.Blockchain = exports.hashBlock = exports.createNewUtcDate = exports.GENESIS_BLOCK_BODY = void 0;
+exports.Blockchain = exports.Block = exports.hashBlock = exports.createNewUtcDate = exports.GENESIS_BLOCK_BODY = void 0;
 var SHA256 = require("crypto-js/sha256");
 exports.GENESIS_BLOCK_BODY = "Genesis block - First block in the chain ⛓️ !";
 /** HElper function that create timestamp (i.e. valid UTC timestamps to validate with external ressources) */
@@ -22,6 +22,7 @@ var Block = /** @class */ (function () {
     }
     return Block;
 }());
+exports.Block = Block;
 /**
  * Blockchain
  * Data model with function to support:

@@ -11,7 +11,7 @@ export const hashBlock = (block: Block) => SHA256(JSON.stringify(block)).toStri
 /**
  * Simple block data model
  */
-class Block{
+export class Block{
   // Defining the Block types
   hash: string;
   height: number;
@@ -43,13 +43,14 @@ export class Blockchain{
   constructor(){
     this.chain = [];
     // Creating the Genesis block to the blockchain
-    this.addNewBlock(new Block(GENESIS_BLOCK_BODY));
+    this.addNewBlock(GENESIS_BLOCK_BODY);
   }
 
   // Blockchain functions
 
   /** Adding block to the blockchain */
-  addNewBlock(newBlock: Block){
+  addNewBlock(bodyData: string){
+    const newBlock = new Block(bodyData);
     // Adding a height to the new block
     newBlock.height = this.chain.length;
     // Adding a timestamp
