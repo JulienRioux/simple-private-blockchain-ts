@@ -120,18 +120,3 @@ export class Blockchain{
     }
   }
 }
-
-// // Creating the blockchain
-// const myBlockchain = new Blockchain();
-
-// // Simple function that create a new block with the block number as body
-// const newBlock = () => new Block(`Block #${myBlockchain.chain.length + 1}`);
-
-// // Adding 10 blocks to my blockchain
-// for(let i = 0; i < 3; i++){
-//   myBlockchain.addNewBlock(newBlock());
-// }
-
-// // Checking if the chain is valid and printing the output
-// const chainIsValid = myBlockchain.validateChain();
-// console.log(`The Chain is${chainIsValid ? '' : "n't"} valid ${chainIsValid ? '✅' : "❌"} `);
