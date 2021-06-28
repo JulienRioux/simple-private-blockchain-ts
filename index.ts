@@ -11,7 +11,7 @@ export const hashBlock = (block: Block) => SHA256(JSON.stringify(block)).toStri
 /**
  * Simple block data model
  */
-export class Block{
+export class Block {
   // Defining the Block types
   hash: string;
   height: number;
@@ -19,7 +19,7 @@ export class Block{
   timestamp: string;
   previousBlockHash: string;
 
-  constructor(bodyData: string){ 
+  constructor(bodyData: string) { 
     this.hash = "";
     this.height = 0;
     this.body = bodyData;
@@ -37,7 +37,7 @@ export class Block{
  * - validateBlock();
  * - validateChain();
  */
-export class Blockchain{
+export class Blockchain {
   chain: Block[]; 
   constructor(){
     this.chain = [];
@@ -48,7 +48,7 @@ export class Blockchain{
   // Blockchain functions
 
   /** Adding block to the blockchain */
-  addNewBlock(bodyData: string){
+  addNewBlock(bodyData: string) {
     const newBlock = new Block(bodyData);
     // Adding a height to the new block
     newBlock.height = this.chain.length;
@@ -66,7 +66,7 @@ export class Blockchain{
   }
 
   /** Simply gets the last block added to the chain  */
-  getLatestBlock(){
+  getLatestBlock() {
     return this.chain[this.chain.length - 1];
   }
 
@@ -76,7 +76,7 @@ export class Blockchain{
   }
 
   /** Validate that the block has the right hash */
-  validateBlock(blockToVerify: any){
+  validateBlock(blockToVerify: Block) {
     // Saving the hash to verify before resetting the hash to an empty and running the sha256 hashing function
     const oldHash = blockToVerify.hash;
     const clonedBlockToVerify = Object.assign({}, blockToVerify);
@@ -92,7 +92,7 @@ export class Blockchain{
   }
 
   /** Validate that the chain is valid */
-  validateChain(){
+  validateChain() {
     // First get the last block 
     let blockToValidate = this.getLatestBlock();
 
